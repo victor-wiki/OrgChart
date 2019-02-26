@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace OrgChart.Sample
 {
@@ -29,8 +26,8 @@ namespace OrgChart.Sample
                 VerticalSpace=20,               
                 BoxHeight=45,
                 BoxWidth = 110,
-                UseMinBoxWidthWhenHasOnlyOne = true,
-                MinBoxWidth = 80
+                //UseMinBoxWidthWhenHasOnlyOne = true,
+                //MinBoxWidth = 80
             };       
 
             OrgChartGenerator orgChartGenerator = new OrgChartGenerator(GetOrgChartNodes(), option) { DefaultOption = defaultOption };
