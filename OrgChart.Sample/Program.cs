@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace OrgChart.Sample
 {
@@ -38,9 +39,32 @@ namespace OrgChart.Sample
                 MemoryStream ms = orgChartGenerator.Generate();
                 ms.WriteTo(fs);
                 fs.Flush();
-            } ;
+            }
 
-            Process.Start(filePath);
+            try
+            {
+                Process.Start(filePath);
+            }
+            catch
+            {                
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    filePath = filePath.Replace("&", "^&");
+                    Process.Start(new ProcessStartInfo("cmd", $"/c start {filePath}") { CreateNoWindow = true });
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    Process.Start("xdg-open", filePath);
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    Process.Start("open", filePath);
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         private static List<OrgChartNode> GetOrgChartNodes()
