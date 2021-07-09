@@ -63,7 +63,7 @@ of nodes , and it can set auto height/width according to the content of a node.
 
                 new OrgChartNode("1.3", "Vice President Marketing Services",
                   new OrgChartNode("1.3.1", "Media"),
-                  new OrgChartNode("1.3.2", "Resarch")
+                  new OrgChartNode("1.3.2", "Research")
                 ),
 
                 new OrgChartNode("1.4", "Vice President Management Services",
